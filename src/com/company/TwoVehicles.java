@@ -15,10 +15,11 @@ public class TwoVehicles {
         sportcar.fuelcap = 14;
         sportcar.mpg = 12;
 
-        System.out.println("Минивен может перевезти " + minivan.passengers + " пассажиров");
-        minivan.range();
+        range1 = minivan.range();
+        range2 = sportcar.range();
 
-        System.out.println("Спорткар может перевезти " + sportcar.passengers + " пассажиров");
-        sportcar.range();
+        System.out.println("Минивен может перевезти " + minivan.passengers + " пассажиров на расстояние " + range1 + " миль");
+        System.out.println("Спорткар может перевезти " + sportcar.passengers + " пассажиров на расстояние " + range2 + " миль");
+
     }
 }
