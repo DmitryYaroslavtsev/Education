@@ -6,6 +6,7 @@ public class TwoVehicles {
         Vehicle sportcar = new Vehicle();
 
         int range1, range2;
+        int dist = 252;
 
         minivan.passengers = 7;
         minivan.fuelcap = 16;
@@ -20,6 +21,12 @@ public class TwoVehicles {
 
         System.out.println("Минивен может перевезти " + minivan.passengers + " пассажиров на расстояние " + range1 + " миль");
         System.out.println("Спорткар может перевезти " + sportcar.passengers + " пассажиров на расстояние " + range2 + " миль");
+
+        System.out.println("Для преодоления " + dist +
+                " миль мивэну требуется " + minivan.fuelneeded(dist) + " галлонов топлива");
+
+        System.out.println("Для преодоления " + dist +
+                " миль спорткару требуется " + sportcar.fuelneeded(dist) + " галлонов топлива");
 
     }
 }
