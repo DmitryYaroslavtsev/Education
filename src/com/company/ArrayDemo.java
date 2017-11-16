@@ -13,3 +13,4 @@ public class ArrayDemo {
             System.out.println("Элемент sample[" + i + "]: " + sample[i]);
     }
 }
+
