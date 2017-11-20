@@ -1,6 +1,6 @@
 package com.company;
 
-public class ShowBits {
+public class ShowBits1 {
     public static void main(String args[]) {
         byte val = 123;
 
