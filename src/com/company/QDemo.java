@@ -1,12 +1,12 @@
 package com.company;
 
 class Queue {
-    char q[];
+    private char q[];
     int n[];
     boolean b[];
-    int putloc, getloc;
+    private int putloc, getloc;
 
-    Queue(int size, int type) {
+    Queue(int size) {
         q = new char[size+1];
         putloc = getloc = 0;
     }
@@ -19,25 +19,6 @@ class Queue {
 
         putloc++;
         q[putloc] = ch;
-    }
-    void put(int num) {
-        if (putloc == n.length-1) {
-            System.out.println(" - Очередь заполнена");
-            return;
-        }
-
-        putloc++;
-        n[putloc] = num;
-    }
-
-    void put(boolean bo) {
-        if (putloc == b.length-1) {
-            System.out.println(" - Очередь заполнена");
-            return;
-        }
-
-        putloc++;
-        b[putloc] = bo;
     }
 
     char get() {
@@ -53,8 +34,8 @@ class Queue {
 
 public class QDemo {
     public static void main(String args[]) {
-        Queue bigQ = new Queue(100, 1);
-        Queue smallQ = new Queue(4, 1);
+        Queue bigQ = new Queue(100);
+        Queue smallQ = new Queue(4);
         char ch;
         int i;
 
@@ -84,8 +65,7 @@ public class QDemo {
         System.out.println("Содержимое smallQ");
         for (i = 0; i < 5; i++) {
             ch = smallQ.get();
-            if (ch != (char)0) System.out.print(ch);
+            if (ch != (char) 0) System.out.print(ch);
         }
-
     }
 }
