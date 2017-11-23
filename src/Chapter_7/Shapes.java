@@ -4,6 +4,19 @@ class TwoDShape{
     private double width;
     private double height;
 
+    TwoDShape() {
+        width = height = 0.0;
+    }
+
+    TwoDShape(double w, double h) {
+        width = w;
+        height = h;
+    }
+
+    TwoDShape(double x) {
+        width = height = x;
+    }
+
     double getWidth() {return width; }
     double getHeight() {return height; }
     void setWidth(double w) {width = w; }
@@ -19,10 +32,18 @@ class TwoDShape{
 class Triangle extends TwoDShape {
     private String style;
 
+    Triangle() {
+        super();
+        style = "none";
+    }
+
     Triangle(String s, double w, double h) {
-        setHeight(h);
-        setWidth(w);
+        super(w, h);
         style = s;
+    }
+    Triangle(double x) {
+        super(x);
+        style = "закрашенный";
     }
 
     double area() {
@@ -34,20 +55,13 @@ class Triangle extends TwoDShape {
     }
 }
 
-class Rectangle extends TwoDShape {
-    boolean isSquere() {
-        return (getWidth() == getHeight());
-    }
-
-    double area() {
-        return getWidth() * getHeight();
-    }
-}
-
 public class Shapes {
     public static void main(String arg[]) {
-        Triangle t1 = new Triangle("закрашенный", 4.0,4.0);
+        Triangle t1 = new Triangle();
         Triangle t2 = new Triangle("контурный", 8.0, 12.0);
+        Triangle t3 = new Triangle(4.0);
+
+        t1 = t2;
 
         System.out.println("About t1: ");
         t1.showStyle();
@@ -61,19 +75,9 @@ public class Shapes {
         System.out.println("Площадь - " + t2.area());
 
         System.out.println();
-        TwoDShape t3 = new TwoDShape();
-        t3.setWidth(3.0);
-        t3.setHeight(4.0);
+        System.out.println("About t3: ");
+        t3.showStyle();
         t3.showDim();
-
-        System.out.println();
-        Rectangle t4 = new Rectangle();
-        t4.setHeight(5.0);
-        t4.setWidth(5.0);
-        if (t4.isSquere()) System.out.println("Квадрат");
-        else System.out.println("Прямоугольник");
-        System.out.println(t4.area());
-
-
+        System.out.println("Площадь - " + t3.area());
     }
 }
