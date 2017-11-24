@@ -1,8 +1,6 @@
 package Chapter_7;
 
-import org.w3c.dom.css.Rect;
-
-class TwoDShape{
+abstract class TwoDShape{
     private double width;
     private double height;
     private String name;
@@ -44,11 +42,10 @@ class TwoDShape{
                 + width + " и " + height);
     }
 
-    double area() {
-        System.out.println("Метод ареа() должен быть переопределен");
-        return 0.0;
-    }
+    abstract double area();
+
 }
+
 
 class Triangle extends TwoDShape {
     private String style;
@@ -95,28 +92,45 @@ class Rectangle extends TwoDShape {
     }
 
     boolean isSquare() {
-        if (getWidth() == getHeight()) return true;
-        return false;
+        return getWidth() == getHeight();
     }
     double area() {
         return getWidth() * getHeight();
     }
 }
 
+class Circle extends TwoDShape{
+    Circle () {
+        super();
+    }
+
+    Circle(double x){
+        super(x, "Круг");
+    }
+    Circle(Circle ob) {
+        super(ob);
+    }
+    double area(){
+        return (getHeight()/2) * (getHeight()/2) *Math.PI;
+    }
+}
+
 public class Shapes {
     public static void main(String arg[]) {
-        TwoDShape shapes[] = new TwoDShape[5];
+        TwoDShape shapes[] = new TwoDShape[4];
 
         shapes[0] = new Triangle("контурный", 8.0, 12.0);
         shapes[1] = new Rectangle(10);
         shapes[2] = new Rectangle(10, 4);
         shapes[3] = new Triangle(7.0);
-        shapes[4] = new TwoDShape(10, 20, "фигура");
+        //shapes[4] = new TwoDShape(10, 20, "фигура");
 
         for (TwoDShape d:shapes) {
             System.out.println("Объект - " + d.getName());
             System.out.println("Площадь - " + d.area());
             System.out.println();
         }
+        Circle c = new Circle(3);
+        System.out.println(c.area());
     }
 }
