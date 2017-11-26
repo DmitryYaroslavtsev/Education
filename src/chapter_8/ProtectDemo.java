@@ -41,5 +41,12 @@ class ProtectDemo {
         for (int i = 0; i < books.length; i++) {
             books[i].show();
         }
+
+        System.out.println("Show all books 2:");
+        for (int i = 0; i < books.length; i++) {
+            if (books[i].getAuthor() == "2")
+                System.out.println(books[i].getTitle());
+            //books[0].getTitle() = "test title";
+        }
     }
 }
