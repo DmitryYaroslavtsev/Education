@@ -26,5 +26,6 @@ public class DefaultMethodDemo {
         System.out.println("User: " + obj.getUserID());
         System.out.println("Admin: " + obj.getAdminID());
         System.out.println("Admin2: " + obj2.getAdminID());
+        System.out.println("Universal: " + MyIF.getUniversalID());
     }
 }
