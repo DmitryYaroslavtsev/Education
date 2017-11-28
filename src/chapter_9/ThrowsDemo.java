@@ -1,8 +1,10 @@
 package chapter_9;
 
+import java.io.*;
+
 public class ThrowsDemo {
     public static char prompt(String str)
-        throws java.io.IOException {
+        throws IOException {
         System.out.print(str + ": ");
         return (char) System.in.read();
     }
@@ -13,7 +15,7 @@ public class ThrowsDemo {
         try {
             ch = prompt("Enter a letter");
         }
-        catch (java.io.IOException exc) {
+        catch (IOException exc) {
             System.out.println("IO exc");
             ch = 'X';
         }
