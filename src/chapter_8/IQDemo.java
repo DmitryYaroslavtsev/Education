@@ -1,5 +1,24 @@
 package chapter_8;
 
+class QueueFullException extends Throwable {
+    int size;
+
+    QueueFullException(int s) {
+        size = s;
+    }
+
+    public String toString() {
+        return "\nОчередь заполнена. Максимальный размер очереди " + size;
+    }
+}
+
+class QueueEmptyException extends Throwable {
+    public String toString() {
+        return "Очередь пуста";
+    }
+}
+
+
 class FixedQueue implements ICharQ {
     private char q[];
     private int putloc, getloc;
@@ -9,20 +28,18 @@ class FixedQueue implements ICharQ {
         putloc = getloc = 0;
     }
 
-    public void put(char ch) {
+    public void put(char ch) throws QueueFullException {
         if (putloc == q.length - 1) {
-            System.out.println(" - Очередь заполнена");
-            return;
+            throw new QueueFullException(q.length -1);
         }
         putloc++;
         q[putloc] = ch;
     }
 
     @Override
-    public char get() {
+    public char get() throws QueueEmptyException {
         if (getloc == putloc) {
-            System.out.println("Очередь пуста");
-            return (char) 0;
+            throw new QueueEmptyException();
         }
         getloc++;
         return q[getloc];
@@ -97,68 +114,31 @@ class DynQueue implements ICharQ {
 
 public class IQDemo {
     public static void main(String args[]) {
-        FixedQueue q1 = new FixedQueue(10);
-        DynQueue q2 = new DynQueue(5);
-        CirqularQueue q3 = new CirqularQueue(10);
-
-        ICharQ iQ;
-
+        FixedQueue q = new FixedQueue(10);
         char ch;
-        //int i;
 
-        iQ = q1;
-
-        for (int i = 0; i < 10; i++) {
-            iQ.put((char) ('A' + i));
+        try {
+            for (int i = 0; i < 11; i++) {
+                System.out.print("Try to save: " + (char)('A' + i));
+                q.put((char) ('A' + i));
+                System.out.println(" - OK");
+            }
+            System.out.println();
         }
-        System.out.print("Fixed: ");
-        for (int i = 0; i < 10; i++) {
-            ch = iQ.get();
-            System.out.print(ch);
-        }
-        System.out.println();
-
-        iQ = q2;
-
-        for (int i = 0; i < 10; i++) {
-            iQ.put((char) ('Z' - i));
-        }
-        System.out.print("Dyn: ");
-        for (int i = 0; i < 10; i++) {
-            ch = iQ.get();
-            System.out.print(ch);
+        catch (QueueFullException exc) {
+            System.out.println(exc);
         }
         System.out.println();
 
-        iQ = q3;
-        for (int i = 0; i < 10; i++) {
-            iQ.put((char) ('A' + i));
+        try {
+            for (int i = 0; i < 11; i++) {
+                System.out.print("Try to out: ");
+                ch = q.get();
+                System.out.println(ch);
+            }
         }
-        System.out.print("Cir: ");
-        for (int i = 0; i < 10; i++) {
-            ch = iQ.get();
-            System.out.print(ch);
+        catch (QueueEmptyException exc) {
+            System.out.println(exc);
         }
-        System.out.println();
-
-        for (int i = 10; i < 20; i++) {
-            iQ.put((char) ('A' + i));
-        }
-        System.out.print("Cir: ");
-        for (int i = 0; i < 10; i++) {
-            ch = iQ.get();
-            System.out.print(ch);
-        }
-        System.out.println("\nSave and reuse: ");
-
-        for (int i = 0; i < 20; i++) {
-            iQ.put((char) ('A' + i));
-            ch = iQ.get();
-            System.out.print(ch);
-        }
-
-
-
-
     }
 }
