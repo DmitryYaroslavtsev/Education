@@ -3,7 +3,7 @@ package chapter_11;
 class SumArray {
     private int sum;
 
-    synchronized int sumArray(int nums[]) {
+    int sumArray(int nums[]) {
         sum = 0;
 
         for (int i = 0; i < nums.length; i++) {
@@ -38,7 +38,9 @@ class MyThread3 implements Runnable {
         int sum;
 
         System.out.println(thrd.getName() + " - запуск");
-        answer = sa.sumArray(a);
+        synchronized (sa) {
+            answer = sa.sumArray(a);
+        }
         System.out.println("СУММА для " + thrd.getName() +
         " : " + answer);
 
