@@ -11,6 +11,12 @@ class TickTock {
         }
         System.out.print("Tick ");
 
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException exc) {
+            System.out.println("Выполнение потокка прервано");
+        }
+
         state = "ticked";
         notify();
         try {
@@ -29,6 +35,13 @@ class TickTock {
         }
 
         System.out.println("Tock");
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException exc) {
+            System.out.println("Выполнение потокка прервано");
+        }
+
         state = "tocked";
         notify();
 
