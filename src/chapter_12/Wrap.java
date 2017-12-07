@@ -7,6 +7,6 @@ public class Wrap {
 
         int i = iOb.intValue();
 
-        System.out.printf(i + " " +iOb);
+        System.out.println(i + " " +iOb);
     }
 }
