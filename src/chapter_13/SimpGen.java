@@ -23,7 +23,7 @@ class TwoGen<T, V> {
 public class SimpGen {
     public static void main(String[] args) {
         TwoGen<Integer, String> tgObj =
-                new TwoGen<Integer, String>(88, "Test");
+                new TwoGen<>(88, "Test");
 
         tgObj.showTypes();
 
