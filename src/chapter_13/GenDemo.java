@@ -22,7 +22,7 @@ public class GenDemo {
 
         Gen<Integer> iOb;
 
-        iOb = new Gen<Integer>(88);
+        iOb = new Gen<>(88);
 
         iOb.showType();
 
@@ -30,7 +30,7 @@ public class GenDemo {
         System.out.println("Value: " + v);
         System.out.println();
 
-        Gen<String> strOb = new Gen<String>("Test");
+        Gen<String> strOb = new Gen<>("Test");
 
         strOb.showType();
 
