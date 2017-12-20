@@ -40,13 +40,16 @@ public class CheckBoxDemo extends Application {
         selected = new Label("");
 
         cbSmartphone = new CheckBox("Smartphone");
+        cbSmartphone.setAllowIndeterminate(true);
         cbTablet = new CheckBox("Tablet");
         cbNotebook = new CheckBox("Notebook");
         cbDesktop = new CheckBox("Desktop");
 
         //Actions
         cbSmartphone.setOnAction(event -> {
-            if (cbSmartphone.isSelected())
+            if (cbSmartphone.isIndeterminate())
+                response.setText("Smartphone state is indeterminate");
+            else if (cbSmartphone.isSelected())
                 response.setText("Smartphone was just selected");
             else response.setText("Smartphone was just cleared");
             showAll();
