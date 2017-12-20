@@ -39,10 +39,10 @@ public class ListDemo implements ListSelectionListener {
 
     public void valueChanged(ListSelectionEvent le) {
         int[] idx = jlst.getSelectedIndices();
-        String str = "";
+        StringBuilder str = new StringBuilder();
         if (idx[0] != -1) {
             for (int i: idx) {
-                str += names[i] + " ";
+                str.append(names[i]).append(" ");
             }
             jlab.setText("Current selection: " + str);
         }
