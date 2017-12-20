@@ -14,11 +14,13 @@ public class SwingFC implements ActionListener {
 
     JLabel jlabFirst, jlabSecond;
     JLabel jlabResult;
+    JLabel jlabPos;
+    JCheckBox jcbx;
 
     SwingFC() {
         JFrame jfrm = new JFrame("Compare files");
         jfrm.setLayout(new FlowLayout());
-        jfrm.setSize(200,190);
+        jfrm.setSize(200,250);
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         jtfFirst = new JTextField(14);
@@ -35,13 +37,19 @@ public class SwingFC implements ActionListener {
 
         jlabResult = new JLabel("");
 
+        jcbx = new JCheckBox("Show position of diff");
+        jlabPos = new JLabel("");
+
+
         //Add components
         jfrm.add(jlabFirst);
         jfrm.add(jtfFirst);
         jfrm.add(jlabSecond);
         jfrm.add(jtfSecond);
+        jfrm.add(jcbx);
         jfrm.add(jbtnComp);
         jfrm.add(jlabResult);
+        jfrm.add(jlabPos);
 
         jfrm.setVisible(true);
     }
@@ -60,11 +68,16 @@ public class SwingFC implements ActionListener {
 
         try (FileInputStream f1 = new FileInputStream(jtfFirst.getText());
              FileInputStream f2 = new FileInputStream(jtfSecond.getText())) {
-
+            int c = 1;
             do {
                 i = f1.read();
                 j = f2.read();
-                if (i != j) break;
+                if (i != j) {
+                    if (jcbx.isSelected())
+                        jlabPos.setText(Integer.toString(c));
+                    break;
+                }
+                c++;
             } while (i != -1 && j != -1);
 
             if (i != j)
