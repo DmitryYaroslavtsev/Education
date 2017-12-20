@@ -18,11 +18,11 @@ public class ListDemo implements ListSelectionListener {
     ListDemo() {
         JFrame jfrm = new JFrame("JList Demo");
         jfrm.setLayout(new FlowLayout());
-        jfrm.setSize(200, 160);
+        jfrm.setSize(200, 200);
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         jlst = new JList<>(names);
-        jlst.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //jlst.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         jscrp = new JScrollPane(jlst);
         jscrp.setPreferredSize(new Dimension(120, 90));
@@ -38,10 +38,14 @@ public class ListDemo implements ListSelectionListener {
     }
 
     public void valueChanged(ListSelectionEvent le) {
-        int idx = jlst.getSelectedIndex();
-
-        if (idx != -1)
-            jlab.setText("Current selection: " + names[idx]);
+        int[] idx = jlst.getSelectedIndices();
+        String str = "";
+        if (idx[0] != -1) {
+            for (int i: idx) {
+                str += names[i] + " ";
+            }
+            jlab.setText("Current selection: " + str);
+        }
         else jlab.setText("Please choose a name");
     }
 
